@@ -154,7 +154,7 @@ The port the server will run on.
 
 ### BOWIE_PUBLISHER_TOKEN_HASHES
 
-The comma separated string containing the hashes of publish tokens. When trying to publish an app bowie will request the token via stdin (the command line). Hashes can be generated in node.js, see the section Generating Hashes.
+The comma separated string containing the hashes of publisher tokens. When trying to publish an app bowie will request the token via stdin (the command line). Hashes can be generated in node.js, see the section Generating Hashes.
 
 ### BOWIE_CONSUMER_TOKEN_HASHES
 
