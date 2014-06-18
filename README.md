@@ -177,5 +177,6 @@ Wishlist
 * `bowie.collection.json` should also install apps so the file itself is only need to move the collection.
 * Remote logging of installs, exits, starts etc. Possibly with MAC codes or other ice methods.
 * Bowie checking itself for updates?
-* Syncing server to provide bowie collections? This way a collection more apps be added remotely.
+* Syncing server to provide bowie collections? This would allow more apps to be added to a collection remotely. Maybe over kill.
+* A web interface for viewing builds, publish times and possibly installs.
 * A hook system for when applications a published. This, for example, could commit and push changes in the `./application_packages/` directory on the server.
