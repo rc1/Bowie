@@ -17,7 +17,7 @@ It is intended for use on project specific, bespoke deployments. This influences
 Bowie Collections
 =================
 
-A bowie collection is a series of application to be kept running and periodically auto updated. Collections are to configure on the multiple non-development machines.
+A bowie collection is a series of application to be kept running and periodically auto updated. Collections are to be configured on the multiple non-development machines.
 
 Installing
 ----------
