@@ -3,7 +3,7 @@ Bowie
 
 __STATUS: speculative; for conversation; not yet implemented; specification for a minimal viable product.__
     
-Keep on publishing. Keep on consuming. Keep on playing.
+Keep on publishing. Keep on re-releasing. Keep on playing.
 
 Description
 ===========
