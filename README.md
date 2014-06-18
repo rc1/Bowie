@@ -59,7 +59,7 @@ Enter the bowie directory and run `bowie startall`. This starts all applications
 Stopping A Bowie Collection
 ---------------------------
 
-Enter the bowie directory and run `bowie stopall`. This will stop all applications. It will also stop periodically checking of updated applications. This, for example, maybe used to temporarly halt a machine from autoupdating or restarting application so it becomes a development/test machine until next reboot or until `bowie startall` is ran again.
+Enter the bowie directory and run `bowie stopall`. This will stop all applications. It will also stop periodically checking for updated applications. This, for example, maybe used to temporarly halt a machine from autoupdating or restarting application so it becomes a development/test machine until next reboot or until `bowie startall` is ran again.
 
 Bowie Apps
 ==========
