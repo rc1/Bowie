@@ -17,7 +17,7 @@ It is intended for use on project specific, bespoke deployments. This influences
 Bowie Collections
 =================
 
-A bowie collection is a series of application to be kept running and periodically auto updated. Collections are to be configured on the multiple non-development machines.
+A bowie collection is a series of application to be kept running and periodically auto updated. Collections are to be configured on multiple non-development machines.
 
 Installing
 ----------
@@ -29,7 +29,7 @@ Working Directory
 
 Bowie should be run from its own directory. 
 
-Enter into an empty directory (the bowie) directory and run `bowie init --collection`. You will be prompted to add the url of the bowie repository server and your access token. When finished running it will set the state of the current directory to at least:
+Enter into an empty directory (the bowie directory to hold the collection of app) and run `bowie init --collection`. You will be prompted to add the url of the bowie repository server and your access token. When finished running it will set the state of the current directory to at least:
 
 
      /.
@@ -52,17 +52,17 @@ To add an app to bowie run `bowie install myapp` which sets the current director
 Starting A Bowie Collection
 ---------------------------
 
-Enter the bowie directory and run `bowie startall`. This start all applications. It will also periodically check for updates to any new application. This, for example, maybe set as as cron job for `@reboot`.
+Enter the bowie directory and run `bowie startall`. This starts all applications. It will also periodically check for updates to any new application. This, for example, maybe set as as cron job for `@reboot`.
 
 Stopping A Bowie Collection
 ---------------------------
 
-Enter the bowie directory and run `bowie stopall`. This will stop all applications. It will also stop periodically checking of updated applications.
+Enter the bowie directory and run `bowie stopall`. This will stop all applications. It will also stop periodically checking of updated applications. This, for example, maybe used to temporarly halt a machine from autoupdating or restarting application so it becomes a development/test machine until next reboot or until `bowie startall` is ran again.
 
 Bowie Apps
 ==========
 
-Bowie apps are the apps which are run in collections. They can be published to the bowie repository. They will be created and publish on the development machines.  
+Bowie apps are the apps which are run within collections. They can be published to the bowie repository. They will be created and published on, likely, a single development machines.  
 
 Enter into the application/project working directory and run `bowie init --app`. This will create a `bowie.app.json` 
 
@@ -93,11 +93,11 @@ The `bowie.app.json` has the following format:
     
 ### name
 
-This is the application name. It needs to unique to any bowie repository it is publish to or the behaviour will be undefined.
+This is the application name. It needs to unique to any bowie repository it is to be published to or the behaviour will be undefined.
 
 ### version
 
-This is the version of the application. Version name need to follow [Semantic Versioning](http://semver.org) and be parseable by [Semver](https://www.npmjs.org/package/semver). It is likely presumed that bowie apps use the PATCH number of the version number to imply build number during development. Therefore bumping the PATCH number during the build process may be advisable.
+This is the version number of the application. Version numbers need to follow [Semantic Versioning](http://semver.org) and be parseable by [Semver](https://www.npmjs.org/package/semver). It is likely presumed that bowie apps will use the PATCH componenet of the version number to imply build number during development. Therefore bumping the PATCH number during the build process may be advisable.
 
 ### install_script
 
@@ -105,16 +105,16 @@ This is the script which is to be run by bowie when a new version of an applicat
 
 ### launch_script
 
-This is the script which is to be run by bowie and kept running. It should adhere to the exit codes detailed below. For example if the repeatedly exits with failure it may not be attempted to be restarted.
+This is the script  is to be run by bowie and kept running. It should adhere to the exit codes detailed below. For example if the repeatedly exits with failure it may not be attempted to be restarted.
 
 ### forever_options
 
-Bowie uses [forever.js](https://github.com/nodejitsu/forever-monitor) to keep process alive. The default forever options of bowie can be extended with any options provided here. 
+Bowie uses [forever.js](https://github.com/nodejitsu/forever-monitor) to keep process alive. The default forever option object of bowie can be extended with any object provided here. 
 
 Testing/Preflight running
 -------------------------
 
-Not quite testing per sé but a util to preflight run `install_script` and `launch_script`. They can be run with `bowie run --install_script` or `bowie run --launch_script`. These don't do much other than run the commands and arguments specified in the `bowie.app.json`.
+Not quite testing per sé but a util to preflight run the `install_script` and `launch_script` scripts. They can be run with `bowie run --install_script` or `bowie run --launch_script`. These don't do much other than run the commands and arguments specified in the `bowie.app.json`.
 
 Exit codes
 ----------
@@ -129,28 +129,23 @@ The app version in `bowie.app.json` may be bumped by running `bowie bump:major`,
 Publishing
 ----------
 
-The app can be published by running `bowie publish`. When publishing you will be requested for the token which matches the `BOWIE_PUBLISHER_TOKEN_HASHES` hash as provided to the bowie repository server.
+The app can be published by running `bowie publish`. When publishing you will be requested for the token which matches the `BOWIE_PUBLISHER_TOKEN_HASHES` hash provided as an enviroment variable to the bowie repository server.
 
  
 Bowie Repository Server
 =======================
 
-A bowie repository server act as an application repository for all the collections.
+A bowie repository server acts as a remote application repository to collections.
 
 Running a Repository Server
 ---------------------------
 
-The bowie server publishes bowie apps providing them to the bowie collections.
-
-
-The bowie server resides within bowie's own source code repository. Bowie stores published application packages to the folder `./application_packages/`. This is ignored by the application own source code git package. It could in theory be a git repp provided it contains an empty file named `.gitkeep`.
+The bowie server resides within bowie's own source code repository. Bowie stores published application packages to the folder `./application_packages/`. This is ignored by the bowies own source code git repository. This folder could in theory be a git repository provided it keeps an empty file named `.gitkeep`.
 
 The server is run using a series of require environment variables and then `node app.bowie-server.js`. For example:
 
      $ PORT=8888 BOWIE_PUBLISHER_TOKEN_HASHES=somehash,anotherhash BOWIE_CONSUMER_TOKEN_HASHES=somehash,anotherhash node app.bowie-server.js
      
-
-
 The environment variables are described below.
 
 ### PORT
@@ -183,4 +178,4 @@ Wishlist
 * Remote logging of installs, exits, starts etc. Possibly with MAC codes or other ice methods.
 * Bowie checking itself for updates?
 * Syncing server to provide bowie collections? This way a collection more apps be added remotely.
- 
+* A hook system for when applications a published. This, for example, could commit and push changes in the `./application_packages/` directory on the server.
