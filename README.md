@@ -5,7 +5,7 @@ __STATUS: speculative; for conversation; not yet implemented; specification for 
     
 Keep on publishing. Keep on re-releasing. Keep on playing.
 
-__Also take on [bower](http://bower.io) an package manager we maybe don't need.__
+_Also take on [bower](http://bower.io) an package manager we maybe don't need._
 
 Description
 ===========
