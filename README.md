@@ -12,7 +12,7 @@ Description
 
 An application manager come application runner. Why? To keep multiple apps on multiple machines running latest builds without local intervention. For example an installation requiring multiple raspberry pis to run the same suite of applications. 
 
-It runs using node.js. It heavily leverages [forever.js](https://github.com/nodejitsu/forever-monitor) for process management. Bowie applications in theory may be programmed in any language. 
+It is written in JavaScript for Node.js. It heavily leverages [forever.js](https://github.com/nodejitsu/forever-monitor) for process management. Bowie applications in theory may be programmed in any language. 
 
 It is intended for use on project specific, bespoke deployments. This influences decisions in design. It is probably best run on local networks or intranets. At least one bowie server is likely run for one project, not one bowie server for multiple projects. At least for a minimal viable product.
 
