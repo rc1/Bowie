@@ -66,8 +66,6 @@ Bowie Apps
 
 Bowie apps are the apps which are run within collections. They can be published to the bowie repository. They will be created and published on, likely, a single development machines.  
 
-Enter into the application/project working directory and run `bowie init --app`. This will create a `bowie.app.json` 
-
 
 Creating 
 --------
